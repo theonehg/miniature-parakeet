@@ -14,7 +14,7 @@ class CreateRequestController extends Controller
     public function index(){
     	$data_pr = priorities::get();
     	$data_dep = departments::get();
-    	$data_user = User::get();
+    	$data_user = User::select('id','fullname')->get();
     	return view('database_manager.request.newleader')->with(['pr'=>$data_pr,'dep'=>$data_dep,'users'=>$data_user]);
     }
     public function save(Request $request){

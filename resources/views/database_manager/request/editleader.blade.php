@@ -77,7 +77,7 @@
                                         multiple="multiple" style="width:100%;">
                                     {{--<option value="{{ $edit_data->id }}">{{ $edit_data->name }}</option>--}}
                                     @foreach($rel as $item)
-                                        @if($edit_data->fullname == $item->fullname)
+                                        @if($edit_data->assigned_to == $item->id)
                                             <option value="{{$item->id}}" selected>{{$item->fullname}}</option>
                                         @else
                                             <option value="{{$item->id}}">{{$item->fullname}}</option>
@@ -94,9 +94,14 @@
                             <div class="form-group">
                                 <label class="required" for="request_priority">Status</label>
                                 <select class="form-control" id="status" name="status">
-                                    @foreach($stu as $status)
-                                        <option value="{{ $status->id }}">{{ $status->name }}</option>
+                                    @foreach($stu as $item)
+                                        @if($edit_data->id == $item->id)
+                                            <option value="{{$item->id}}" selected>{{$item->name}}</option>
+                                        @else
+                                            <option value="{{$item->id}}">{{$item->name}}</option>
+                                        @endif
                                     @endforeach
+
                                 </select>
                             </div>
                         </div>
@@ -114,6 +119,7 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    {{--// Chưa xử lý khung Content--}}
                     <label for="request_content">Content</label>
                     <textarea id="request_content" name="content" class="form-control" style="height:250px"></textarea>
                 </div>
@@ -130,5 +136,6 @@
     {{-- trang xu ly edit gom cac form khac nhau de sua  --}}
 @endsection
 @section('js')
+{{--xử lý datetime-- của deadline và created_at}}
 
 @endsection
