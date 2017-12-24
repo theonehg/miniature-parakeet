@@ -42,6 +42,15 @@
                                 </div>
                             </div>
                         </div>
+                        {{--<div class="col-sm-6 col-xs-12">--}}
+                            {{--<div class="form-group" >--}}
+                                {{--<label class="required" for="request_subject">Created_at</label>--}}
+                                {{--<div class="input-group date">--}}
+                                    {{--<div class="input-group-addon"><i class="fa fa-calendar"></i></div>--}}
+                                    {{--<input type="text" class="form-control pull-right" id="request_creaeted" name="created_at" data-date-format="yyyy-mm-dd hh:ii:ss">--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                     </div>
                     <div class="row">
                         <div class="col-sm-6 col-xs-12">
@@ -58,7 +67,7 @@
                             <div class="form-group">
                                 <label for="request_relater">Relater(s)</label>
                                 <select class="form-control select2" id="request_relater" name="relater" multiple="multiple" style="width:100%;">
-                                    @foreach($user as $user)
+                                    @foreach($users as $user)
                                         <option value="{{ $user->id }}">{{ $user->name }}</option>
                                     @endforeach
                                 </select>
