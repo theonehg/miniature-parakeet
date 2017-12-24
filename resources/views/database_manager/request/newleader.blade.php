@@ -1,7 +1,7 @@
 @extends('admin.homeleader')
 @section('css')
-{{-- chinh lai style --}}
-<style>
+    {{-- chinh lai style --}}
+    <style>
         div.form-group > label.required:after {
             content: " *";
             color: red;
@@ -9,7 +9,7 @@
     </style>
 @endsection
 @section('main')
-   
+
     <section class="content">
         <form method="post" action="{{route('crequest_leader')}}">
             {{ csrf_field() }}
@@ -36,28 +36,22 @@
                         <div class="col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label class="required" for="request_deadline">Deadline</label>
+
                                 <div class="input-group date">
                                     <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                    <input type="text" class="form-control pull-right" id="request_deadline" name="deadline_at" data-date-format="yyyy-mm-dd hh:ii:ss">
+                                    <input type="text" class="form-control pull-right" id="request_deadline"
+                                           name="deadline_at" data-date-format="yyyy-mm-dd hh:ii:ss">
                                 </div>
                             </div>
                         </div>
-                        {{--<div class="col-sm-6 col-xs-12">--}}
-                            {{--<div class="form-group" >--}}
-                                {{--<label class="required" for="request_subject">Created_at</label>--}}
-                                {{--<div class="input-group date">--}}
-                                    {{--<div class="input-group-addon"><i class="fa fa-calendar"></i></div>--}}
-                                    {{--<input type="text" class="form-control pull-right" id="request_creaeted" name="created_at" data-date-format="yyyy-mm-dd hh:ii:ss">--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
                     </div>
+
                     <div class="row">
                         <div class="col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label class="required" for="request_location">Department</label>
                                 <select class="form-control" id="request_location" name="department_id">
-                                   @foreach($dep as $department)
+                                    @foreach($dep as $department)
                                         <option value="{{ $department->id }}">{{ $department->name }}</option>
                                     @endforeach
                                 </select>
@@ -66,7 +60,9 @@
                         <div class="col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label for="request_relater">Relater(s)</label>
-                                <select class="form-control select2" id="request_relater" name="relater" multiple="multiple" style="width:100%;">
+                                <select class="form-control select2" id="request_relater" name="relater"
+                                        multiple="multiple"
+                                        style="width:100%;">
                                     @foreach($users as $user)
                                         <option value="{{ $user->id }}">{{ $user->name }}</option>
                                     @endforeach
@@ -76,7 +72,8 @@
                     </div>
                     <div class="form-group">
                         <label for="request_content">Content</label>
-                        <textarea id="request_content" name="content" class="form-control" style="height:250px"></textarea>
+                        <textarea id="request_content" name="content" class="form-control"
+                                  style="height:250px"></textarea>
                     </div>
                 </div>
                 <div class="box-footer">
@@ -90,8 +87,8 @@
 
 @endsection
 @section('js')
-<script>
-    // chinh lai js datepicker
+    <script>
+        // chinh lai js datepicker
         $(function () {
             $('#request_deadline').datetimepicker({autoclose: true});
             $('#request_relater').select2();
