@@ -27,9 +27,9 @@
                             <div class="form-group">
                                 <label class="required" for="request_priority">Priority</label>
                                 <select class="form-control" id="request_priority" name="priority_id">
-                                    {{-- @foreach($pr as $priority)
+                                    @foreach($pr as $priority)
                                         <option value="{{ $priority->id }}">{{ $priority->name }}</option>
-                                    @endforeach --}}
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -48,9 +48,9 @@
                             <div class="form-group">
                                 <label class="required" for="request_location">Department</label>
                                 <select class="form-control" id="request_location" name="department_id">
-                                   {{-- @foreach($dep as $department)
+                                   @foreach($dep as $department)
                                         <option value="{{ $department->id }}">{{ $department->name }}</option>
-                                    @endforeach --}}
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -58,9 +58,9 @@
                             <div class="form-group">
                                 <label for="request_relater">Relater(s)</label>
                                 <select class="form-control select2" id="request_relater" name="relater" multiple="multiple" style="width:100%;">
-                                   {{--  @foreach($user as $user)
+                                    @foreach($users as $user)
                                         <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                    @endforeach --}}
+                                    @endforeach
                                 </select>
                             </div>
                         </div>

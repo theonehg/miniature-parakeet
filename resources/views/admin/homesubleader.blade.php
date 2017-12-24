@@ -1,92 +1,101 @@
-@extends('admin.homesubleader')
+@extends('layouts.admin_dashboard')
 @section('css')
-{{-- chinh lai style --}}
-<style>
-        div.form-group > label.required:after {
-            content: " *";
-            color: red;
-        }
-    </style>
+    
 @endsection
-@section('main')
-   
-    <section class="content">
-        <form method="post" action="{{route('crequest_subleader')}}">
-            {{ csrf_field() }}
-            <div class="box box-primary box-solid">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Create Request</h3>
-                </div>
-                <div class="box-body">
-                    <div class="form-group">
-                        <label class="required" for="request_subject">Request Subject</label>
-                        <input type="text" class="form-control input-lg" id="request_subject" name="subject" required>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label class="required" for="request_priority">Priority</label>
-                                <select class="form-control" id="request_priority" name="priority_id">
-                                    {{-- @foreach($pr as $priority)
-                                        <option value="{{ $priority->id }}">{{ $priority->name }}</option>
-                                    @endforeach --}}
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label class="required" for="request_deadline">Deadline</label>
-                                <div class="input-group date">
-                                    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                    <input type="text" class="form-control pull-right" id="request_deadline" name="deadline_at" data-date-format="yyyy-mm-dd hh:ii:ss">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label class="required" for="request_location">Department</label>
-                                <select class="form-control" id="request_location" name="department_id">
-                                   {{-- @foreach($dep as $department)
-                                        <option value="{{ $department->id }}">{{ $department->name }}</option>
-                                    @endforeach --}}
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label for="request_relater">Relater(s)</label>
-                                <select class="form-control select2" id="request_relater" name="relater" multiple="multiple" style="width:100%;">
-                                   {{--  @foreach($user as $user)
-                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                    @endforeach --}}
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="request_content">Content</label>
-                        <textarea id="request_content" name="content" class="form-control" style="height:250px"></textarea>
-                    </div>
-                </div>
-                <div class="box-footer">
-                    <div class="pull-right">
-                        <button type="submit" class="btn btn-primary">Create</button>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </section>
+@section('sidebar')
 
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        
+        
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" data-widget="tree">
+            <li>
+            <a class="bg-red" href="{{route('crequest_subleader')}}">
+                <i class="fa fa-pencil-square-o"></i>
+                <span>Create Request</span>
+            </a>
+        </li>
+            
+            
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>Công việc tôi yêu cầu</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('srequest_indi_subleader')}}"><i class="fa fa-circle-o"></i> All</a></li>
+                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> New</a></li>
+                    <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Improgress</a></li>
+                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Resolved</a></li>
+                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Out of Date</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>Công việc liên quan</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> All</a></li>
+                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> New</a></li>
+                    <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Improgress</a></li>
+                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Resolved</a></li>
+                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Out of Date</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>Công việc tôi được giao</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> All</a></li>
+                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> New</a></li>
+                    <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Improgress</a></li>
+                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Resolved</a></li>
+                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Out of Date</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>Công việc của team</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> All</a></li>
+                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> New</a></li>
+                    <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Improgress</a></li>
+                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Resolved</a></li>
+                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Out of Date</a></li>
+                </ul>
+            </li>
+           
+            
+            
+            
+            
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
 @endsection
+
 @section('js')
-<script>
-    // chinh lai js datepicker
-        $(function () {
-            $('#request_deadline').datetimepicker({autoclose: true});
-            $('#request_relater').select2();
-            $('#request_content').wysihtml5();
-        });
-    </script>
+    //extend custome link js here
 @endsection
