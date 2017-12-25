@@ -32,16 +32,7 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function index(){
-        return view('login');
-    }
-    public function login(){
-        return view('welcome');
-    }
 
-    public function logout(){
-        return redirect(route('login'));
-    }
 
     public function __construct()
     {

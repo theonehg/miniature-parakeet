@@ -25,6 +25,7 @@ class LoginController extends Controller
             return redirect(route('dashboard'));
         }
         return view('login', ['error' => true]);
+
     }
 
     public function logout()
