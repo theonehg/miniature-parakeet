@@ -30,11 +30,11 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('srequest_indi_subleader')}}"><i class="fa fa-circle-o"></i> All</a></li>
-                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> New</a></li>
-                    <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Improgress</a></li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Resolved</a></li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Out of Date</a></li>
+                    <li><a href="{{route('show_indi_subleader')}}"><i class="fa fa-circle-o"></i> All</a></li>
+                    <li><a href="{{route('show_indi_subleader_new')}}"><i class="fa fa-circle-o"></i> New</a></li>
+                    <li><a href="{{route('show_indi_subleader_improgress')}}"><i class="fa fa-circle-o"></i> Improgress</a></li>
+                    <li><a href="{{route('show_indi_subleader_resolved')}}"><i class="fa fa-circle-o"></i> Resolved</a></li>
+                    <li><a href="{{route('show_indi_subleader_outofdate')}}"><i class="fa fa-circle-o"></i> Out of Date</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -46,11 +46,11 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> All</a></li>
-                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> New</a></li>
-                    <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Improgress</a></li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Resolved</a></li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Out of Date</a></li>
+                    <li><a href="{{route('sublead_show_rale_all')}}"><i class="fa fa-circle-o"></i> All</a></li>
+                    <li><a href="{{route('sublead_show_rale_new')}}"><i class="fa fa-circle-o"></i> New</a></li>
+                    <li><a href="{{route('sublead_show_rele_improgress')}}"><i class="fa fa-circle-o"></i> Improgress</a></li>
+                    <li><a href="{{route('sublead_show_rele_resolved')}}"><i class="fa fa-circle-o"></i> Resolved</a></li>
+                    <li><a href="{{route('sublead_show_rele_outofdate')}}"><i class="fa fa-circle-o"></i> Out of Date</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -62,11 +62,11 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> All</a></li>
-                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> New</a></li>
-                    <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Improgress</a></li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Resolved</a></li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Out of Date</a></li>
+                    <li><a href="{{route('sublead_show_assign')}}"><i class="fa fa-circle-o"></i> All</a></li>
+                    <li><a href="{{route('sublead_show_assign_new')}}"><i class="fa fa-circle-o"></i> New</a></li>
+                    <li><a href="{{route('sublead_show_assign_improgcess')}}"><i class="fa fa-circle-o"></i> Improgress</a></li>
+                    <li><a href="{{route('sublead_show_assign_feedback')}}"><i class="fa fa-circle-o"></i> Resolved</a></li>
+                    <li><a href="{{route('sublead_show_assign_outofdate')}}"><i class="fa fa-circle-o"></i> Out of Date</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -78,11 +78,12 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> All</a></li>
-                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> New</a></li>
-                    <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Improgress</a></li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Resolved</a></li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Out of Date</a></li>
+                    <li><a href="{{route('sublead_show_team')}}"><i class="fa fa-circle-o"></i> All</a></li>
+                    <li><a href="{{route('sublead_show_team_new')}}"><i class="fa fa-circle-o"></i> New</a></li>
+                    <li><a href="{{route('sublead_show_team_improgcess')}}"><i class="fa fa-circle-o"></i> Improgress</a></li>
+                    <li><a href="{{route('sublead_show_team_feedback')}}"><i class="fa fa-circle-o"></i> Resolved</a></li>
+                    <li><a href="{{route('sublead_show_team_outofdate')}}"><i class="fa fa-circle-o"></i> Out of Date</a></li>
+                    <li><a href="{{route('sublead_show_team_close')}}"><i class="fa fa-circle-o"></i>Close</a></li>
                 </ul>
             </li>
            

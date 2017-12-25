@@ -10,7 +10,7 @@
 @endsection
 @section('sidebar')
 
-<aside class="main-sidebar">
+< class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
         <!-- Sidebar user panel -->
@@ -36,11 +36,11 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('srequest_indi_member')}}"><i class="fa fa-circle-o"></i> All</a></li>
-                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> New</a></li>
-                    <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Improgress</a></li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Resolved</a></li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Out of Date</a></li>
+                    <li><a href="{{route('mem_show_indi')}}"><i class="fa fa-circle-o"></i> All</a></li>
+                    <li><a href="{{route('mem_show_indi_new')}}"><i class="fa fa-circle-o"></i> New</a></li>
+                    <li><a href="{{route('mem_show_indi_improgcess')}}"><i class="fa fa-circle-o"></i> Improgress</a></li>
+                    <li><a href="{{route('mem_show_indi_resolved')}}"><i class="fa fa-circle-o"></i> Resolved</a></li>
+                    <li><a href="{{route('mem_show_indi_outofdate')}}"><i class="fa fa-circle-o"></i> Out of Date</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -52,11 +52,11 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> All</a></li>
-                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> New</a></li>
-                    <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Improgress</a></li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Resolved</a></li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Out of Date</a></li>
+                    <li><a href="{{route('mem_show_rele')}}"><i class="fa fa-circle-o"></i> All</a></li>
+                    <li><a href="{{route('mem_show_rele_new')}}"><i class="fa fa-circle-o"></i> New</a></li>
+                    <li><a href="{{route('mem_show_rele_improcess')}}"><i class="fa fa-circle-o"></i> Improgress</a></li>
+                    <li><a href="{{route('mem_show_rele_resolved')}}"><i class="fa fa-circle-o"></i> Resolved</a></li>
+                    <li><a href="{{route('mem_show_rele_outofdate')}}"><i class="fa fa-circle-o"></i> Out of Date</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -68,14 +68,14 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> All</a></li>
-                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> New</a></li>
-                    <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Improgress</a></li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Resolved</a></li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Out of Date</a></li>
+                    <li><a href="{{route('mem_show_assign')}}"><i class="fa fa-circle-o"></i> All</a></li>
+                    <li><a href="{{route('mem_show_assign_new')}}"><i class="fa fa-circle-o"></i> New</a></li>
+                    <li><a href="{{route('mem_show_assign_improgcess')}}"><i class="fa fa-circle-o"></i> Improgress</a></li>
+                    <li><a href="{{route('mem_show_assign_feedback')}}"><i class="fa fa-circle-o"></i> Resolved</a></li>
+                    <li><a href="{{route('mem_show_assign_outofdate')}}"><i class="fa fa-circle-o"></i> Out of Date</a></li>
                 </ul>
-            
-
+        </ul>
+</section>
     <!-- /.sidebar -->
 </aside>
 @endsection
