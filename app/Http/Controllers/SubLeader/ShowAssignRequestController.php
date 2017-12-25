@@ -23,7 +23,7 @@ class ShowAssignRequestController extends Controller
             ->where('assigned_to.id', '=', $id)
             ->get();
 
-        return view('database_manager.show_list_congviecyeucau.show_subleader')->with(['indi_data' => $data]);
+        return view('database_manager.show_list_congviecduocgiao.show_subleader')->with(['indi_data' => $data]);
     }
 
     public function new()
@@ -40,7 +40,7 @@ class ShowAssignRequestController extends Controller
             ->where('requests.status_id', '=', Status::NEW)
             ->get();
 
-        return view('database_manager.show_list_congviecyeucau.show_subleader')->with(['indi_data' => $data]);
+        return view('database_manager.show_list_congviecduocgiao.show_subleader')->with(['indi_data' => $data]);
     }
 
     public function inprogress()
@@ -57,7 +57,7 @@ class ShowAssignRequestController extends Controller
             ->where('requests.status_id', '=', Status::IN_PROGRESS)
             ->get();
 
-        return view('database_manager.show_list_congviecyeucau.show_subleader')->with(['indi_data' => $data]);
+        return view('database_manager.show_list_congviecduocgiao.show_subleader')->with(['indi_data' => $data]);
     }
 
     public function resolved()
@@ -74,7 +74,7 @@ class ShowAssignRequestController extends Controller
             ->where('requests.status_id', '=', Status::RESOLVED)
             ->get();
 
-        return view('database_manager.show_list_congviecyeucau.show_subleader')->with(['indi_data' => $data]);
+        return view('database_manager.show_list_congviecduocgiao.show_subleader')->with(['indi_data' => $data]);
     }
 
     public function feedback()
@@ -91,7 +91,7 @@ class ShowAssignRequestController extends Controller
             ->where('requests.status_id', '=', Status::FEEDBACK)
             ->get();
 
-        return view('database_manager.show_list_congviecyeucau.show_subleader')->with(['indi_data' => $data]);
+        return view('database_manager.show_list_congviecduocgiao.show_subleader')->with(['indi_data' => $data]);
     }
 
     public function closed()
@@ -108,7 +108,7 @@ class ShowAssignRequestController extends Controller
             ->where('requests.status_id', '=', Status::CLOSED)
             ->get();
 
-        return view('database_manager.show_list_congviecyeucau.show_subleader')->with(['indi_data' => $data]);
+        return view('database_manager.show_list_congviecduocgiao.show_subleader')->with(['indi_data' => $data]);
     }
 
     public function outofdate()
@@ -129,6 +129,6 @@ class ShowAssignRequestController extends Controller
             ->where('requests.deadline_at', '<', $now)
             ->get();
 
-        return view('database_manager.show_list_congviecyeucau.show_subleader')->with(['indi_data' => $data]);
+        return view('database_manager.show_list_congviecduocgiao.show_subleader')->with(['indi_data' => $data]);
     }
 }
