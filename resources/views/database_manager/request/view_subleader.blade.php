@@ -1,3 +1,4 @@
+<?php
 @extends('admin.homemember')
 @section('css')
     {{-- chinh lai style --}}
@@ -12,11 +13,11 @@
 @endsection
 @section('main')
     <section class="content">
-        <form method="post" action="{{ route('srequest_edit_member', $edit_data->id) }}">
+        <form method="post" action="{{ route('srequest_view_subleader', $edit_data->id) }}">
             {{ csrf_field() }}
             <div class="box box-primary box-solid">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Edit Request</h3>
+                    <h3 class="box-title">View Request</h3>
                 </div>
                 <div class="box-body">
                     <div class="form-group">
@@ -27,17 +28,7 @@
                         <div class="col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label class="required" for="request_priority">Priority</label>
-                                <select class="form-control" id="request_priority" name="priority">
-
-                                    @foreach($pr as $item)
-                                        @if($edit_data->priority == $item->name)
-                                            <option value="{{$item->id}}" selected>{{$item->name}}</option>
-                                        @else
-                                            <option value="{{$item->id}}">{{$item->name}}</option>
-                                        @endif
-                                    @endforeach
-
-                                </select>
+                                <input type="text" id="request_priority" class="form-control input-lg" name="priority" value="{{$edit_data->priority}}">
                             </div>
                         </div>
                         <div class="col-sm-6 col-xs-12">
@@ -55,17 +46,7 @@
                         <div class="col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label class="required" for="request_location">Department</label>
-                                <select class="form-control" id="request_location" name="department">
-                                    {{--<option value="{{ $edit_data->priority_id }}">{{ $edit_data->priority }}</option>--}}
-                                    @foreach($dep as $depart)
-                                        @if($edit_data->department == $depart->name)
-                                            <option value="{{$depart->id}}" selected>{{$depart->name}}</option>
-                                        @else
-                                            <option value="{{$depart->id}}">{{$depart->name}}</option>
-                                        @endif
-                                    @endforeach
-
-                                </select>
+                                <input type="text" class="">
                             </div>
                         </div>
                         <div class="col-sm-6 col-xs-12">

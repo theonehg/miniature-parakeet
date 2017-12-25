@@ -22,11 +22,11 @@ class ITDaNang
         if(!Auth::check()){
             return redirect()->route('login');
         }
-        $teamm_id = Auth::user()->team_id;
+        $team_id = Auth::user()->team_id;
         //select department_id form teams where team_id = Auth::user()->team_id
-        $dept = Team::select('')->where()->first();
-        if(Auth::user()->team_id){
-
+        $dept_id = Team::select('department_id')->where('team_id','=',$team_id);
+        if($dept_id != 2){
+            return redirect()->route('login');
         }
         return $next($request);
     }

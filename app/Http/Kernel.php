@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Illuminate\Support\Facades\App;
 
 class Kernel extends HttpKernel
 {
@@ -57,5 +58,10 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'isleader' =>\App\Http\Middleware\IsLeader::class,
+        'is_subleader'=>\App\Http\Middleware\IsSubLeader::class,
+        'is_member' =>\App\Http\Middleware\IsMember::class,
+        'ithn'=>\App\Http\Middleware\ITHaNoi::class,
+        'itdn'=> \App\Http\Middleware\ITDaNang::class,
     ];
 }
