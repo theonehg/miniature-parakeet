@@ -6,7 +6,7 @@
     <section class="content">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">Danh sách công việc yêu cầu</h3>
+                <h3 class="box-title">Danh sách công việc của team</h3>
             </div>
             <div class="box-body">
                 <table id="request_list" class="table table-bordered table-hover">
@@ -27,11 +27,11 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $data->subject }}</td>
-                            <td>{{ $data->priority}}</td>
+                            <td>{{ $data->priority_id }}</td>
                             <td>{{ $data->created_by }}</td>
                             <td>{{ $data->assigned_to }}</td>
-                            <td>{{ date('d/m/Y',strtotime($data->deadline_at)) }}</td>
-                            <td>{{ $data->status }}</td>
+                            <td>{{ $data->deadline_at }}</td>
+                            <td>{{ $data->status_id }}</td>
                             <td class="text-center">
                                 {{-- 1 tap hop cac object voi moi record $data lay id cua cac record --}}
                                 <a href="{{ route('srequest_edit_leader', $data->id) }}">

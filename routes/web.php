@@ -12,5 +12,5 @@
 */
 include_once 'admin/route_admin.php';
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
