@@ -13,13 +13,27 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         DB::table('users')->insert([
-            'position_id' => 1,
+            ['position_id' => 1,
             'team_id' => 1,
             'username' => 'nvnam',
             'fullname' => 'Nguyễn Văn Nam',
             'email' => 'mannv@gmail.com',
             'avatar' => '',
-            'password' => bcrypt('namnv1234'),
+            'password' => bcrypt('namnv1234'),],
+            ['position_id' => 2,
+                'team_id' => 2,
+                'username' => 'TVNam',
+                'fullname' => 'Trần Văn Nam',
+                'email' => 'namtv@gmail.com',
+                'avatar' => '',
+                'password' => bcrypt('namtv1234'),],
+            ['position_id' => 3,
+                'team_id' => 2,
+                'username' => 'TVLuyen',
+                'fullname' => 'Tân Văn Luyện',
+                'email' => 'luyentv@gmail.com',
+                'avatar' => '',
+                'password' => bcrypt('luyentv1234'),],
         ]);
     }
 
@@ -32,7 +46,7 @@ class DatabaseSeeder extends Seeder
         $user->fullname = 'Nguyễn Văn Nam';
         $user->email = 'mannv@gmail.com';
         $user->avatar = '';
-        $user->password = Hash::make('namnv1234');
+        $user->password = Hash::make('namnv1234namnv1234');
         $user->save();
 
         $user = new User();
