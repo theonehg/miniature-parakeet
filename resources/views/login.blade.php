@@ -44,7 +44,7 @@
         <b>Request</b>IT
     </div>
     <div class="login-box-body">
-        <form action="{{ route('login_post') }}" method="post">
+        <form action="{{ route('login') }}" method="post">
             {{ csrf_field() }}
             @isset($error)
                 <div class="alert alert-warning alert-dismissible">

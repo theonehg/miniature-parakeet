@@ -10,6 +10,11 @@
     	return view('database_manager.request.new');  
 	});
 
+Route::get('/login','Auth\LoginController@index')->name('login');
+Route::post('/login','Auth\LoginController@login')->name('login');
+
+Route::get('/logout','Auth\LoginController@logout')->name('logout');
+
 Route::get('/tao-yeu-cau-leader','Leader\CreateRequestController@index')->name('crequest_leader');
 Route::post('/tao-yeu-cau-leader','Leader\CreateRequestController@save')->name('crequest_leader');
 Route::get('/tao-yeu-cau-subleader','SubLeader\CreateRequestController@index')->name('crequest_subleader');
