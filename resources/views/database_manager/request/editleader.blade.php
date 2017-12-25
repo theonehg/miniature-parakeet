@@ -20,8 +20,8 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group">
-                        <label class="required" for="request_subject">Request Subject</label>
-                        <div>{!!$edit_data->subject !!}</div>
+                        <label class="required" for="request_subject">Request Subject</label><br>
+                        <textarea id="request_subject" class="from-control" name="subject" style="height:30px; width: 100%">{{$edit_data->subject }}</textarea>
                     </div>
                     <div class="row">
                         <div class="col-sm-6 col-xs-12">
@@ -47,7 +47,7 @@
                                 <div class="input-group date">
                                     <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                     <div type="text" class="form-control pull-right" id="request_deadline"
-                                           name="deadline_at" data-date-format="yyyy-mm-dd hh:ii:ss" >{{ $edit_data->deadline_at }}</div>
+                                           name="deadline" data-date-format="yyyy-mm-dd hh:ii:ss" >{{ $edit_data->deadline_at }}</div>
                                 </div>
                             </div>
                         </div>
@@ -113,7 +113,7 @@
                                 <div class="input-group date">
                                     <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                     <div type="text" class="form-control pull-right" id="request_deadline"
-                                         name="deadline_at" data-date-format="yyyy-mm-dd hh:ii:ss" >{{ $edit_data->created_at }}</div>
+                                         name="created_at" data-date-format="yyyy-mm-dd hh:ii:ss" >{{ $edit_data->created_at }}</div>
                                 </div>
 
                             </div>
@@ -127,10 +127,11 @@
                 </div>
             </div>
             <div class="box-footer">
-                <div class="pull-right">
+
+                <div class="form-group col-md-12">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
-            </div>
+
             </div>
         </form>
     </section>
@@ -138,6 +139,12 @@
     {{-- trang xu ly edit gom cac form khac nhau de sua  --}}
 @endsection
 @section('js')
-
+    <script>
+        $(function () {
+            $('#request_deadline').datetimepicker({autoclose: true});
+            $('#request_relater').select2();
+            $('#request_content').wysihtml5();
+        });
+    </script>
 
 @endsection

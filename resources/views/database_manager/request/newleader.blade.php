@@ -86,7 +86,7 @@
 @endsection
 @section('js')
     <script>
-        // chinh lai js datepicker
+
         $(function () {
             $('#request_deadline').datetimepicker({autoclose: true});
             $('#request_relater').select2();

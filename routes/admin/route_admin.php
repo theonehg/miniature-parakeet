@@ -33,8 +33,8 @@ Route::get('/member-cong-viec-yeu-cau','Member\ShowIndividualRequestController@i
 
 //edit cac yeu cau
 Route::get('/leader-sua-cong-viec/{id}','Leader\ShowEditRequestController@index')->name('srequest_edit_leader');
-Route::post('/leader-sua-cong-viec/{id}','Leader\ShowEditRequestController@sua')->name('srequest_edit_leader');
-Route::get('/leader-sua-cong-viec/{id}','Leader\ShowEditRequestController@index')->name('srequest_edit_leader');
-Route::post('/leader-sua-cong-viec/{id}','Leader\ShowEditRequestController@sua')->name('srequest_edit_leader');
+Route::post('/leader-sua-cong-viec/{id}','Leader\ShowEditRequestController@edit')->name('srequest_edit_leader');
+//Route::get('/leader-sua-cong-viec/{id}','Leader\ShowEditRequestController@index')->name('srequest_edit_leader');
+//Route::post('/leader-sua-cong-viec/{id}','Leader\ShowEditRequestController@edit')->name('srequest_edit_leader');
 
 Route::get('/member-sua-cong-viec/{id}','Leader\ShowEditRequestController@index')->name('srequest_edit_member');
