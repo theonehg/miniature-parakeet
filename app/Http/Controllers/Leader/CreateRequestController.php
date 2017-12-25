@@ -5,13 +5,15 @@ namespace App\Http\Controllers\Leader;
 use App\Department;
 use App\Http\Controllers\Controller;
 use App\Priority;
+use App\Relater;
 use App\Request;
 use App\Status;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request as HttpRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Validation\Validator;
+use Illuminate\Support\Facades\Validator;
 
 class CreateRequestController extends Controller
 {
@@ -29,10 +31,10 @@ class CreateRequestController extends Controller
 
     public function save(HttpRequest $request)
     {
-        // lay du lieu input nhap de day vao request
-        dd($request);
-
-        $validator = Validator::make($request->all, [
+        /**
+         * Validate input
+         */
+        $validator = Validator::make($request->all(), [
             'subject' => 'required|max:255',
             'content' => 'required',
             'priority_id' => 'required|integer|min:0',
@@ -41,17 +43,22 @@ class CreateRequestController extends Controller
             'relaters.*' => 'required|integer|min:0',
         ]);
 
-        if ($validator->fails()) {
+        if ($validator->fails()
+            || Priority::find($request->input('priority_id')) == null
+            || Department::find($request->input('department_id')) == null) {
+
             return Redirect::back();
         }
 
-        if (Priority::has($request->only('priority_id'))
-            && Department::has($request->only('department_id'))
-            && ) {
+        foreach ($request->input('relaters') as $relater) {
+            if (User::find($relater) == null) {
+                return Redirect::back();
+            }
+        }
 
-        };
-
-        // create Request
+        /**
+         * Create Request
+         */
         $req = new Request();
         $req->subject = $request->input('subject');
         $req->content = $request->input('content');
@@ -63,13 +70,17 @@ class CreateRequestController extends Controller
         $req->deadline_at = $request->input('deadline_at');
         $req->save();
 
-        // create Relaters
+        /**
+         * Create Relaters
+         */
+        foreach ($request->input('relaters') as $relater) {
+            $rel = new Relater();
+            $rel->request_id = $req->id;
+            $rel->user_id = $relater;
+            $rel->save();
+        }
 
-
-        //  return lai trang create request (index)
-
-
-        return Redirect::back();
+        return redirect(route('srequest_edit_leader', ['id' => $req->id]));
 
     }
 }
