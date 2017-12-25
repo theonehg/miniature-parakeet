@@ -27,11 +27,11 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $data->subject }}</td>
-                            <td>{{ $data->priority_id }}</td>
+                            <td>{{ $data->priority }}</td>
                             <td>{{ $data->created_by }}</td>
                             <td>{{ $data->assigned_to }}</td>
-                            <td>{{ $data->deadline_at }}</td>
-                            <td>{{ $data->status_id }}</td>
+                            <td>{{ date('d/m/Y',strtotime($data->deadline_at)) }}</td>
+                            <td>{{ $data->status }}</td>
                             <td class="text-center">
                                 {{-- 1 tap hop cac object voi moi record $data lay id cua cac record --}}
                                 <a href="{{ route('srequest_edit_subleader', $data->id) }}">
