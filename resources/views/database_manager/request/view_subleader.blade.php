@@ -1,5 +1,4 @@
-<?php
-@extends('admin.homemember')
+@extends('admin.homesubleader')
 @section('css')
     {{-- chinh lai style --}}
     <link rel="stylesheet" href="{{ URL::asset('public/theme/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') }}">
@@ -46,24 +45,14 @@
                         <div class="col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label class="required" for="request_location">Department</label>
-                                <input type="text" class="">
+                                <input type="text" class="form-control" id="request_location" name="department" value="{{$edit_data->department}}" >
                             </div>
                         </div>
                         <div class="col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label for="request_relater">Relater(s)</label>
-                                <select class="form-control select2" id="request_relater" name="assigned_to"
-                                        multiple="multiple" style="width:100%;">
-                                    {{--<option value="{{ $edit_data->id }}">{{ $edit_data->name }}</option>--}}
-                                    @foreach($rel as $rela)
-                                        @if($edit_data->assigned_to == $rela->fullname)
-                                            <option value="{{$rela->id}}" selected>{{$rela->fullname}}</option>
-                                        @else
-                                            <option value="{{$rela->id}}">{{$rela->fullname}}</option>
-                                        @endif
-                                    @endforeach
-
-                                </select>
+                                {{--TODO:chưa select đươc người liên quan để hiện thị--}}
+                                <input type="text" id="request_relater" class="form-control input-lg" name="relater" value="{{$edit_data->assigned_to}}">
                             </div>
                         </div>
                     </div>
@@ -72,16 +61,7 @@
                         <div class="col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label class="required" for="request_priority">Status</label>
-                                <select class="form-control" id="status" name="status">
-                                    @foreach($stu as $stat)
-                                        @if($edit_data->status == $stat->name)
-                                            <option value="{{$stat->id}}" selected>{{$stat->name}}</option>
-                                        @else
-                                            <option value="{{$stat->id}}">{{$stat->name}}</option>
-                                        @endif
-                                    @endforeach
-
-                                </select>
+                                <input type="text" id="request_status" class="form-control input-lg" name="status" value="{{$edit_data->status}}">
                             </div>
                         </div>
                         <div class="col-sm-6 col-xs-12">
@@ -98,15 +78,11 @@
                     <div class="form-group">
                         {{--// Chưa xử lý khung Content--}}
                         <label for="request_content">Content</label>
-                        <textarea id="request_content" name="content" class="form-control" style="height:250px">{!! $edit_data->content !!}</textarea>
+                        <texbox id="request_content" name="content" class="form-control" style="height:250px">{!! $edit_data->content !!}</texbox>
                     </div>
                 </div>
             </div>
             <div class="box-footer">
-
-                <div class="form-group col-md-12">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
 
             </div>
         </form>

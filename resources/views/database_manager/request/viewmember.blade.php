@@ -12,7 +12,7 @@
 @endsection
 @section('main')
     <section class="content">
-        <form method="post" action="{{ route('srequest_view_subleader', $edit_data->id) }}">
+        <form method="post" action="{{ route('srequest_view_member', $edit_data->id) }}">
             {{ csrf_field() }}
             <div class="box box-primary box-solid">
                 <div class="box-header with-border">
@@ -45,12 +45,14 @@
                         <div class="col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label class="required" for="request_location">Department</label>
-                                <input type="text" class="">
+                                <input type="text" class="form-control" id="request_location" name="department" value="{{$edit_data->department}}" >
                             </div>
                         </div>
                         <div class="col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label for="request_relater">Relater(s)</label>
+
+                                {{--TODO:chưa select đươc người liên quan để hiện thị--}}
                                 <input type="text" id="request_relater" class="form-control input-lg" name="relater" value="{{$edit_data->assigned_to}}">
                             </div>
                         </div>
