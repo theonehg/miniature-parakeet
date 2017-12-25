@@ -40,8 +40,8 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/', 'Leader\LeaderController@index')->name('leader_after_login');
         //CREAT REQUEST
-        Route::get('/leader-create', 'Leader\CreateRequestController@index')->name('crequest_leader');
-        Route::post('/leader-create', 'Leader\CreateRequestController@save')->name('crequest_leader');
+        Route::get('/create', 'Leader\CreateRequestController@index')->name('crequest_leader');
+        Route::post('/create', 'Leader\CreateRequestController@save')->name('crequest_leader');
 
         //INDIVIDUAL REQUEST
         Route::get('/individual', 'Leader\ShowIndividualRequestController@index')->name('show_indi_leader');
