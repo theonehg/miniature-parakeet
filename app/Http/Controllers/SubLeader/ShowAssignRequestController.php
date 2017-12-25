@@ -5,10 +5,10 @@ namespace App\Http\Controllers\SubLeader;
 use App\Http\Controllers\Controller;
 use App\Request;
 use App\Status;
-use Illuminate\Support\Carbon;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
-class ShowIndividualRequestController extends Controller
+class ShowAssignRequestController extends Controller
 {
     public function index()
     {
@@ -20,7 +20,7 @@ class ShowIndividualRequestController extends Controller
             ->join('statuses', 'requests.status_id', '=', 'statuses.id')
             ->select('requests.id', 'subject', 'priorities.name as priority',
                 'created_by.fullname as created_by', 'assigned_to.fullname as assigned_to', 'deadline_at', 'statuses.name as status')
-            ->where('created_by.id', '=', $id)
+            ->where('assigned_to.id', '=', $id)
             ->get();
 
         return view('database_manager.show_list_congviecyeucau.show_subleader')->with(['indi_data' => $data]);
@@ -36,7 +36,7 @@ class ShowIndividualRequestController extends Controller
             ->join('statuses', 'requests.status_id', '=', 'statuses.id')
             ->select('requests.id', 'subject', 'priorities.name as priority',
                 'created_by.fullname as created_by', 'assigned_to.fullname as assigned_to', 'deadline_at', 'statuses.name as status')
-            ->where('created_by.id', '=', $id)
+            ->where('assigned_to.id', '=', $id)
             ->where('requests.status_id', '=', Status::NEW)
             ->get();
 
@@ -53,7 +53,7 @@ class ShowIndividualRequestController extends Controller
             ->join('statuses', 'requests.status_id', '=', 'statuses.id')
             ->select('requests.id', 'subject', 'priorities.name as priority',
                 'created_by.fullname as created_by', 'assigned_to.fullname as assigned_to', 'deadline_at', 'statuses.name as status')
-            ->where('created_by.id', '=', $id)
+            ->where('assigned_to.id', '=', $id)
             ->where('requests.status_id', '=', Status::IN_PROGRESS)
             ->get();
 
@@ -70,7 +70,7 @@ class ShowIndividualRequestController extends Controller
             ->join('statuses', 'requests.status_id', '=', 'statuses.id')
             ->select('requests.id', 'subject', 'priorities.name as priority',
                 'created_by.fullname as created_by', 'assigned_to.fullname as assigned_to', 'deadline_at', 'statuses.name as status')
-            ->where('created_by.id', '=', $id)
+            ->where('assigned_to.id', '=', $id)
             ->where('requests.status_id', '=', Status::RESOLVED)
             ->get();
 
@@ -87,7 +87,7 @@ class ShowIndividualRequestController extends Controller
             ->join('statuses', 'requests.status_id', '=', 'statuses.id')
             ->select('requests.id', 'subject', 'priorities.name as priority',
                 'created_by.fullname as created_by', 'assigned_to.fullname as assigned_to', 'deadline_at', 'statuses.name as status')
-            ->where('created_by.id', '=', $id)
+            ->where('assigned_to.id', '=', $id)
             ->where('requests.status_id', '=', Status::FEEDBACK)
             ->get();
 
@@ -104,7 +104,7 @@ class ShowIndividualRequestController extends Controller
             ->join('statuses', 'requests.status_id', '=', 'statuses.id')
             ->select('requests.id', 'subject', 'priorities.name as priority',
                 'created_by.fullname as created_by', 'assigned_to.fullname as assigned_to', 'deadline_at', 'statuses.name as status')
-            ->where('created_by.id', '=', $id)
+            ->where('assigned_to.id', '=', $id)
             ->where('requests.status_id', '=', Status::CLOSED)
             ->get();
 
@@ -123,7 +123,7 @@ class ShowIndividualRequestController extends Controller
             ->join('statuses', 'requests.status_id', '=', 'statuses.id')
             ->select('requests.id', 'subject', 'priorities.name as priority',
                 'created_by.fullname as created_by', 'assigned_to.fullname as assigned_to', 'deadline_at', 'statuses.name as status')
-            ->where('created_by.id', '=', $id)
+            ->where('assigned_to.id', '=', $id)
             ->where('requests.status_id', '<>', Status::CLOSED)
             ->where('requests.status_id', '<>', Status::CANCELLED)
             ->where('requests.deadline_at', '<', $now)

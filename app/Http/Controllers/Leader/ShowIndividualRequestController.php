@@ -4,13 +4,9 @@ namespace App\Http\Controllers\Leader;
 
 use App\Http\Controllers\Controller;
 use App\Request;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
 use App\Status;
-use App\User;
-
-use App\Priority;
-
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class ShowIndividualRequestController extends Controller
 {
@@ -27,7 +23,7 @@ class ShowIndividualRequestController extends Controller
             ->where('created_by.id', '=', $id)
             ->get();
 
-        return view('database_manager.show_list_congviecyeucau.show_member')->with(['indi_data' => $data]);
+        return view('database_manager.show_list_congviecyeucau.show_leader')->with(['indi_data' => $data]);
     }
 
     public function new()
@@ -41,10 +37,7 @@ class ShowIndividualRequestController extends Controller
             ->select('requests.id', 'subject', 'priorities.name as priority',
                 'created_by.fullname as created_by', 'assigned_to.fullname as assigned_to', 'deadline_at', 'statuses.name as status')
             ->where('created_by.id', '=', $id)
-            /**
-             * Status New
-             */
-            ->where('requests.status_id', '=', 1)
+            ->where('requests.status_id', '=', Status::NEW)
             ->get();
 
         return view('database_manager.show_list_congviecyeucau.show_leader')->with(['indi_data' => $data]);
@@ -61,10 +54,7 @@ class ShowIndividualRequestController extends Controller
             ->select('requests.id', 'subject', 'priorities.name as priority',
                 'created_by.fullname as created_by', 'assigned_to.fullname as assigned_to', 'deadline_at', 'statuses.name as status')
             ->where('created_by.id', '=', $id)
-            /**
-             * Status In Progress
-             */
-            ->where('requests.status_id', '=', 2)
+            ->where('requests.status_id', '=', Status::IN_PROGRESS)
             ->get();
 
         return view('database_manager.show_list_congviecyeucau.show_leader')->with(['indi_data' => $data]);
@@ -81,10 +71,7 @@ class ShowIndividualRequestController extends Controller
             ->select('requests.id', 'subject', 'priorities.name as priority',
                 'created_by.fullname as created_by', 'assigned_to.fullname as assigned_to', 'deadline_at', 'statuses.name as status')
             ->where('created_by.id', '=', $id)
-            /**
-             * Status Resolved
-             */
-            ->where('requests.status_id', '=', 3)
+            ->where('requests.status_id', '=', Status::RESOLVED)
             ->get();
 
         return view('database_manager.show_list_congviecyeucau.show_leader')->with(['indi_data' => $data]);
@@ -101,10 +88,7 @@ class ShowIndividualRequestController extends Controller
             ->select('requests.id', 'subject', 'priorities.name as priority',
                 'created_by.fullname as created_by', 'assigned_to.fullname as assigned_to', 'deadline_at', 'statuses.name as status')
             ->where('created_by.id', '=', $id)
-            /**
-             * Status Feedback
-             */
-            ->where('requests.status_id', '=', 4)
+            ->where('requests.status_id', '=', Status::FEEDBACK)
             ->get();
 
         return view('database_manager.show_list_congviecyeucau.show_leader')->with(['indi_data' => $data]);
@@ -121,10 +105,7 @@ class ShowIndividualRequestController extends Controller
             ->select('requests.id', 'subject', 'priorities.name as priority',
                 'created_by.fullname as created_by', 'assigned_to.fullname as assigned_to', 'deadline_at', 'statuses.name as status')
             ->where('created_by.id', '=', $id)
-            /**
-             * Status Closed
-             */
-            ->where('requests.status_id', '=', 5)
+            ->where('requests.status_id', '=', Status::CLOSED)
             ->get();
 
         return view('database_manager.show_list_congviecyeucau.show_leader')->with(['indi_data' => $data]);
@@ -143,14 +124,8 @@ class ShowIndividualRequestController extends Controller
             ->select('requests.id', 'subject', 'priorities.name as priority',
                 'created_by.fullname as created_by', 'assigned_to.fullname as assigned_to', 'deadline_at', 'statuses.name as status')
             ->where('created_by.id', '=', $id)
-            /**
-             * Status Closed
-             */
-            ->where('requests.status_id', '<>', 5)
-            /**
-             * Status Canceled
-             */
-            ->where('requests.status_id', '<>', 6)
+            ->where('requests.status_id', '<>', Status::CLOSED)
+            ->where('requests.status_id', '<>', Status::CANCELLED)
             ->where('requests.deadline_at', '<', $now)
             ->get();
 
