@@ -3,61 +3,157 @@
 namespace App\Http\Controllers\Leader;
 
 use App\Http\Controllers\Controller;
-use App\requests;
+use App\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use App\statuses;
+use App\Status;
 use App\User;
 
-use App\priorities;
+use App\Priority;
 
 
 class ShowIndividualRequestController extends Controller
 {
     public function index()
     {
-  // lay id cua user_logined.
         $id = Auth::id();
 
-        $data = requests::join('priorities','requests.priority_id','=','priorities.id')->join('users as a','requests.created_by','=','a.id')->join('users as b','requests.assigned_to','=','b.id')->join('statuses','requests.status_id','=','statuses.id')->select('requests.id as id','subject','priorities.name as priority','a.fullname as create_by','b.fullname as assigned_to','deadline_at','statuses.name as status')->where('a.id','=',$id)->get();
-        //$data = tickets::join('priority','tickets.priority_id','=','priority.id')->join('users as a','tickets.created_by','=','a.id')->join('users as b','tickets.assigned_to_id','=','b.id')->join('status','tickets.status_id','=','status.id')->select('tickets.id as id','subject','created_at','priority.name_priority as priority','a.employee_name as employee_cre','b.employee_name as employee_assi','deadline','status.name_status as status')->where('a.id','=',$id)->orderBy('created_at','desc')->get();
-//        $data = requests::get();
-        dd($data);
-        return view('database_manager.show_list_congviecyeucau.show_leader')->with([
-            'indi_data' => $data
-        ]);
-    }
-    public function new(){
-        $id = Auth::user()->id;
-        $data = join('priorities','requests.priority_id','=','priorities.id')->join('users as a','requests.created_by','=','a.id')->join('users as b','requests.assigned_to','=','b.id')->join('statuses','requests.status_id','=','statuses.id')->select('requests.id as id','subject','priorities.name as priority','a.fullname as create_by','b.fullname as assigned_to','deadline_at','statuses.name as status')->where('a.id','=',$id)->where('requests.status_id','=',1)->get();
-        return view('database_manager.show_list_congviecyeucau.show_leader')->with([
-            'indi_data' => $data
-        ]);
-    }
-    public function inprogress (){
-        $id = Auth::user();
-        $data = join('priorities','requests.priority_id','=','priorities.id')->join('users as a','requests.created_by','=','a.id')->join('users as b','requests.assigned_to','=','b.id')->join('statuses','requests.status_id','=','statuses.id')->select('requests.id as id','subject','priorities.name as priority','a.fullname as create_by','b.fullname as assigned_to','deadline_at','statuses.name as status')->where('a.id','=',$id)->where('requests.status_id','=',2)->get();
-        return view('database_manager.show_list_congviecyeucau.show_leader')->with([
-            'indi_data' => $data
-        ]);
-    }
-    public function resolved (){
-        $id = Auth::user()->id;
-        $data = join('priorities','requests.priority_id','=','priorities.id')->join('users as a','requests.created_by','=','a.id')->join('users as b','requests.assigned_to','=','b.id')->join('statuses','requests.status_id','=','statuses.id')->select('requests.id as id','subject','priorities.name as priority','a.fullname as create_by','b.fullname as assigned_to','deadline_at','statuses.name as status')->where('a.id','=',$id)->where('requests.status_id','=',3)->get();
-        return view('database_manager.show_list_congviecyeucau.show_leader')->with([
-            'indi_data' => $data
-        ]);
+        $data = Request::join('priorities', 'requests.priority_id', '=', 'priorities.id')
+            ->join('users as created_by', 'requests.created_by', '=', 'created_by.id')
+            ->join('users as assigned_to', 'requests.assigned_to', '=', 'assigned_to.id')
+            ->join('statuses', 'requests.status_id', '=', 'statuses.id')
+            ->select('requests.id', 'subject', 'priorities.name as priority',
+                'created_by.fullname as created_by', 'assigned_to.fullname as assigned_to', 'deadline_at', 'statuses.name as status')
+            ->where('created_by.id', '=', $id)
+            ->get();
 
-    }
-    public function outofdate (){
-    $id = Auth::user()->id;
-        $curTime = Carbon::now();
-        $data = join('priorities','requests.priority_id','=','priorities.id')->join('users as a','requests.created_by','=','a.id')->join('users as b','requests.assigned_to','=','b.id')->join('statuses','requests.status_id','=','statuses.id')->select('requests.id as id','subject','priorities.name as priority','a.fullname as create_by','b.fullname as assigned_to','deadline_at','statuses.name as status')->where('a.id','=',$id)->where('requests.status_id','<>',5)->where('requests.deadline_at','<',$curTime)->where('requests.status_id','<>',6)->get();
-
-        return view('database_manager.show_list_congviecyeucau.show_leader')->with([
-            'indi_data' => $data
-        ]);
-
+        return view('database_manager.show_list_congviecyeucau.show_member')->with(['indi_data' => $data]);
     }
 
+    public function new()
+    {
+        $id = Auth::id();
+
+        $data = Request::join('priorities', 'requests.priority_id', '=', 'priorities.id')
+            ->join('users as created_by', 'requests.created_by', '=', 'created_by.id')
+            ->join('users as assigned_to', 'requests.assigned_to', '=', 'assigned_to.id')
+            ->join('statuses', 'requests.status_id', '=', 'statuses.id')
+            ->select('requests.id', 'subject', 'priorities.name as priority',
+                'created_by.fullname as created_by', 'assigned_to.fullname as assigned_to', 'deadline_at', 'statuses.name as status')
+            ->where('created_by.id', '=', $id)
+            /**
+             * Status New
+             */
+            ->where('requests.status_id', '=', 1)
+            ->get();
+
+        return view('database_manager.show_list_congviecyeucau.show_leader')->with(['indi_data' => $data]);
+    }
+
+    public function inprogress()
+    {
+        $id = Auth::id();
+
+        $data = Request::join('priorities', 'requests.priority_id', '=', 'priorities.id')
+            ->join('users as created_by', 'requests.created_by', '=', 'created_by.id')
+            ->join('users as assigned_to', 'requests.assigned_to', '=', 'assigned_to.id')
+            ->join('statuses', 'requests.status_id', '=', 'statuses.id')
+            ->select('requests.id', 'subject', 'priorities.name as priority',
+                'created_by.fullname as created_by', 'assigned_to.fullname as assigned_to', 'deadline_at', 'statuses.name as status')
+            ->where('created_by.id', '=', $id)
+            /**
+             * Status In Progress
+             */
+            ->where('requests.status_id', '=', 2)
+            ->get();
+
+        return view('database_manager.show_list_congviecyeucau.show_leader')->with(['indi_data' => $data]);
+    }
+
+    public function resolved()
+    {
+        $id = Auth::id();
+
+        $data = Request::join('priorities', 'requests.priority_id', '=', 'priorities.id')
+            ->join('users as created_by', 'requests.created_by', '=', 'created_by.id')
+            ->join('users as assigned_to', 'requests.assigned_to', '=', 'assigned_to.id')
+            ->join('statuses', 'requests.status_id', '=', 'statuses.id')
+            ->select('requests.id', 'subject', 'priorities.name as priority',
+                'created_by.fullname as created_by', 'assigned_to.fullname as assigned_to', 'deadline_at', 'statuses.name as status')
+            ->where('created_by.id', '=', $id)
+            /**
+             * Status Resolved
+             */
+            ->where('requests.status_id', '=', 3)
+            ->get();
+
+        return view('database_manager.show_list_congviecyeucau.show_leader')->with(['indi_data' => $data]);
+    }
+
+    public function feedback()
+    {
+        $id = Auth::id();
+
+        $data = Request::join('priorities', 'requests.priority_id', '=', 'priorities.id')
+            ->join('users as created_by', 'requests.created_by', '=', 'created_by.id')
+            ->join('users as assigned_to', 'requests.assigned_to', '=', 'assigned_to.id')
+            ->join('statuses', 'requests.status_id', '=', 'statuses.id')
+            ->select('requests.id', 'subject', 'priorities.name as priority',
+                'created_by.fullname as created_by', 'assigned_to.fullname as assigned_to', 'deadline_at', 'statuses.name as status')
+            ->where('created_by.id', '=', $id)
+            /**
+             * Status Feedback
+             */
+            ->where('requests.status_id', '=', 4)
+            ->get();
+
+        return view('database_manager.show_list_congviecyeucau.show_leader')->with(['indi_data' => $data]);
+    }
+
+    public function closed()
+    {
+        $id = Auth::id();
+
+        $data = Request::join('priorities', 'requests.priority_id', '=', 'priorities.id')
+            ->join('users as created_by', 'requests.created_by', '=', 'created_by.id')
+            ->join('users as assigned_to', 'requests.assigned_to', '=', 'assigned_to.id')
+            ->join('statuses', 'requests.status_id', '=', 'statuses.id')
+            ->select('requests.id', 'subject', 'priorities.name as priority',
+                'created_by.fullname as created_by', 'assigned_to.fullname as assigned_to', 'deadline_at', 'statuses.name as status')
+            ->where('created_by.id', '=', $id)
+            /**
+             * Status Closed
+             */
+            ->where('requests.status_id', '=', 5)
+            ->get();
+
+        return view('database_manager.show_list_congviecyeucau.show_leader')->with(['indi_data' => $data]);
+    }
+
+    public function outofdate()
+    {
+        $now = Carbon::now();
+
+        $id = Auth::id();
+
+        $data = Request::join('priorities', 'requests.priority_id', '=', 'priorities.id')
+            ->join('users as created_by', 'requests.created_by', '=', 'created_by.id')
+            ->join('users as assigned_to', 'requests.assigned_to', '=', 'assigned_to.id')
+            ->join('statuses', 'requests.status_id', '=', 'statuses.id')
+            ->select('requests.id', 'subject', 'priorities.name as priority',
+                'created_by.fullname as created_by', 'assigned_to.fullname as assigned_to', 'deadline_at', 'statuses.name as status')
+            ->where('created_by.id', '=', $id)
+            /**
+             * Status Closed
+             */
+            ->where('requests.status_id', '<>', 5)
+            /**
+             * Status Canceled
+             */
+            ->where('requests.status_id', '<>', 6)
+            ->where('requests.deadline_at', '<', $now)
+            ->get();
+
+        return view('database_manager.show_list_congviecyeucau.show_leader')->with(['indi_data' => $data]);
+    }
 }

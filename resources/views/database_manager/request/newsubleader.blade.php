@@ -59,7 +59,7 @@
                         <div class="col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label for="request_relater">Relater(s)</label>
-                                <select class="form-control select2" id="request_relater" name="relater" multiple="multiple" style="width:100%;">
+                                <select class="form-control select2" id="request_relater" name="relaters[]" multiple="multiple" style="width:100%;">
                                     @foreach($users as $user)
                                         <option value="{{ $user->id }}">{{ $user->fullname }}</option>
                                     @endforeach
@@ -68,8 +68,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="request_content">Content</label>
-                        <textarea id="request_content" name="content" class="form-control" style="height:250px"></textarea>
+                        <label class="required" for="request_content">Content</label>
+                        <textarea id="request_content" name="content" class="form-control" style="height:250px" required></textarea>
                     </div>
                 </div>
                 <div class="box-footer">

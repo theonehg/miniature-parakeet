@@ -27,11 +27,11 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $data->subject }}</td>
-                            <td>{{ $data->priority_id }}</td>
+                            <td>{{ $data->priority }}</td>
                             <td>{{ $data->created_by }}</td>
                             <td>{{ $data->assigned_to }}</td>
                             <td>{{ $data->deadline_at }}</td>
-                            <td>{{ $data->status_id }}</td>
+                            <td>{{ $data->status }}</td>
                             <td class="text-center">
                                 {{-- 1 tap hop cac object voi moi record $data lay id cua cac record --}}
                                 <a href="{{ route('srequest_edit_member', $data->id) }}">
@@ -40,16 +40,6 @@
                             </td>
                         </tr>
                     @endforeach
-                    <tr>
-                        <td>1</td>
-                        <td>Done this little shit</td>
-                        <td>Critical</td>
-                        <td>H</td>
-                        <td>M</td>
-                        <td>2017-12-25 12:00:00</td>
-                        <td>New</td>
-                        <td><a href="#"><i class="fa fa-search"></i></a></td>
-                    </tr>
                     </tbody>
                 </table>
             </div>

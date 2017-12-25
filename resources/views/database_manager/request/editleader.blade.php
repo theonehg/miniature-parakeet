@@ -49,7 +49,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div class="row">
                         <div class="col-sm-6 col-xs-12">
@@ -71,7 +70,7 @@
                         <div class="col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label for="request_relater">Relater(s)</label>
-                                <select class="form-control select2" id="request_relater" name="assigned_to"
+                                <select class="form-control select2" id="request_relater" name="relaters[]"
                                         multiple="multiple" style="width:100%;">
                                     {{--<option value="{{ $edit_data->id }}">{{ $edit_data->name }}</option>--}}
                                     @foreach($rel as $rela)
