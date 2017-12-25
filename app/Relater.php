@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class relaters extends Model
+class Relater extends Model
 {
     public $timestamps = false;
     protected $table = 'relaters';

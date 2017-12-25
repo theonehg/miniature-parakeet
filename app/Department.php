@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class permissions extends Model
+class Department extends Model
 {
     public $timestamps = false;
-    protected $table = 'permissions';
+    protected $table = 'departments';
 }

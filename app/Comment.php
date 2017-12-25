@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class priorities extends Model
+class Comment extends Model
 {
     public $timestamps = false;
-    protected $table = 'priorities';
+    protected $table = 'comments';
 }

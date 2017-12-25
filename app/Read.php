@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class positions extends Model
+class Read extends Model
 {
     public $timestamps = false;
-    protected $table = 'positions';
+    protected $table = 'reads';
 }

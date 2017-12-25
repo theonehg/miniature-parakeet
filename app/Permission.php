@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class comments extends Model
+class Permission extends Model
 {
     public $timestamps = false;
-    protected $table = 'comments';
+    protected $table = 'permissions';
 }

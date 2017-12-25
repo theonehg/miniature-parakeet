@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class types extends Model
+class Team extends Model
 {
     public $timestamps = false;
-    protected $table = 'types';
+    protected $table = 'teams';
 }
