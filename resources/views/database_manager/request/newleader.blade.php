@@ -1,6 +1,8 @@
 @extends('admin.homeleader')
 @section('css')
     {{-- chinh lai style --}}
+    <link rel="stylesheet" href="{{ URL::asset('public/theme/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('public/theme/bower_components/select2/dist/css/select2.min.css') }}">
     <style>
         div.form-group > label.required:after {
             content: " *";
@@ -9,7 +11,6 @@
     </style>
 @endsection
 @section('main')
-
     <section class="content">
         <form method="post" action="{{route('crequest_leader')}}">
             {{ csrf_field() }}
@@ -36,16 +37,14 @@
                         <div class="col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label class="required" for="request_deadline">Deadline</label>
-
                                 <div class="input-group date">
                                     <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                     <input type="text" class="form-control pull-right" id="request_deadline"
-                                           name="deadline_at" data-date-format="yyyy-mm-dd hh:ii:ss">
+                                           name="deadline_at" data-date-format="yyyy-mm-dd hh:ii:ss" required>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-sm-6 col-xs-12">
                             <div class="form-group">
@@ -70,8 +69,7 @@
                     </div>
                     <div class="form-group">
                         <label for="request_content">Content</label>
-                        <textarea id="request_content" name="content" class="form-control"
-                                  style="height:250px"></textarea>
+                        <textarea id="request_content" name="content" class="form-control" style="height:250px"></textarea>
                     </div>
                 </div>
                 <div class="box-footer">
@@ -85,8 +83,9 @@
 
 @endsection
 @section('js')
+    <script src="{{ URL::asset('public/theme/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ URL::asset('public/theme/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
     <script>
-
         $(function () {
             $('#request_deadline').datetimepicker({autoclose: true});
             $('#request_relater').select2();

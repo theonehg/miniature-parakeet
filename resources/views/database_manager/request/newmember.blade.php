@@ -1,7 +1,9 @@
 @extends('admin.homemember')
 @section('css')
-{{-- chinh lai style --}}
-<style>
+    {{-- chinh lai style --}}
+    <link rel="stylesheet" href="{{ URL::asset('public/theme/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('public/theme/bower_components/select2/dist/css/select2.min.css') }}">
+    <style>
         div.form-group > label.required:after {
             content: " *";
             color: red;
@@ -9,9 +11,8 @@
     </style>
 @endsection
 @section('main')
-   
     <section class="content">
-        <form method="post" action="{{route('crequest_member')}}">
+        <form method="post" action="{{route('crequest_leader')}}">
             {{ csrf_field() }}
             <div class="box box-primary box-solid">
                 <div class="box-header with-border">
@@ -38,7 +39,8 @@
                                 <label class="required" for="request_deadline">Deadline</label>
                                 <div class="input-group date">
                                     <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                    <input type="text" class="form-control pull-right" id="request_deadline" name="deadline_at" data-date-format="yyyy-mm-dd hh:ii:ss">
+                                    <input type="text" class="form-control pull-right" id="request_deadline"
+                                           name="deadline_at" data-date-format="yyyy-mm-dd hh:ii:ss" required>
                                 </div>
                             </div>
                         </div>
@@ -48,7 +50,7 @@
                             <div class="form-group">
                                 <label class="required" for="request_location">Department</label>
                                 <select class="form-control" id="request_location" name="department_id">
-                                   @foreach($dep as $department)
+                                    @foreach($dep as $department)
                                         <option value="{{ $department->id }}">{{ $department->name }}</option>
                                     @endforeach
                                 </select>
@@ -59,7 +61,7 @@
                                 <label for="request_relater">Relater(s)</label>
                                 <select class="form-control select2" id="request_relater" name="relater" multiple="multiple" style="width:100%;">
                                     @foreach($users as $user)
-                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                        <option value="{{ $user->id }}">{{ $user->fullname }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -81,12 +83,13 @@
 
 @endsection
 @section('js')
-<script>
-    // chinh lai js datepicker
+    <script src="{{ URL::asset('public/theme/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ URL::asset('public/theme/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
+    <script>
         $(function () {
             $('#request_deadline').datetimepicker({autoclose: true});
             $('#request_relater').select2();
             $('#request_content').wysihtml5();
         });
     </script>
-@endsections
+@endsection
