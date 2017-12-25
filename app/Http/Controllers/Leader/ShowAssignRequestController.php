@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Leader;
 use App\Http\Controllers\Controller;
 use App\Status;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
+use App\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ShowAssignRequestController extends Controller
