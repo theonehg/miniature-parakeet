@@ -130,6 +130,35 @@
         </form>
     </section>
 
+
+    <div class="row">
+        <div id="result-comment" class="form-group">
+            <p>show comment owr dday bi vo phong chinh lai neu co the nhe</p><!--comment ajax result sau khi bình luận xong cái này sẽ suất hiện 1 list danh giống như ở trên kèm theo cái bình luận vừa submit. theo ajax để tránh bị trùng nên tôi đã hide phần trên-->
+        </div>
+    </div>
+    <br>
+    <form action="" method="post" enctype="multipart/form-data">
+        {{csrf_field()}}
+        <div class="form-group">
+            <label for="binhluan">Bình luận</label>
+            <br/>
+            <select id="comment_value" class="form-control">
+                <option value="" selected disabled>Chọn loại comment</option>
+                <option value="0">Comment Bình thường</option>
+                <option value="1">Comment Đánh giá</option>
+                <option value="2">Comment thay đổi mức độ ưu tiên</option>
+                <option value="3">Comment thay đổi deadline</option>
+            </select>
+            <br>
+            {{--<!--phần này sẽ chạy trpng jquery ở duwosi-->--}}
+            {{--<div id="showtextarea">--}}
+                {{--<!--textarea-->--}}
+            {{--</div>--}}
+        </div>
+        <textarea class="form-control" placeholer="Comment"></textarea>
+        <button id="comment" class="btn btn-primary" type="submit" style="display: none">Gửi Bình Luận</button>
+
+
     {{-- trang xu ly edit gom cac form khac nhau de sua  --}}
 @endsection
 @section('js')
