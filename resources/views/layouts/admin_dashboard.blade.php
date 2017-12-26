@@ -73,7 +73,7 @@
                         <ul class="dropdown-menu">
                             
                             <li>
-                            <a href="">
+                            <a href="{{route('logout')}}">
                                 <i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                            

@@ -10,7 +10,7 @@
 @endsection
 @section('sidebar')
 
-< class="main-sidebar">
+<<aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
         <!-- Sidebar user panel -->
@@ -75,10 +75,10 @@
                     <li><a href="{{route('mem_show_assign_outofdate')}}"><i class="fa fa-circle-o"></i> Out of Date</a></li>
                 </ul>
         </ul>
-</section>
+    </section>
     <!-- /.sidebar -->
 </aside>
 @endsection
 @section('js')
-    //extend custome link js here
+
 @endsection

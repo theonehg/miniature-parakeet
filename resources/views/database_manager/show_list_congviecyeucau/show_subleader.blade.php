@@ -34,7 +34,7 @@
                             <td>{{ $data->status }}</td>
                             <td class="text-center">
                                 {{-- 1 tap hop cac object voi moi record $data lay id cua cac record --}}
-                                <a href="{{ route('srequest_edit_subleader', $data->id) }}">
+                                <a href="{{ route('srequest_view_subleader', $data->id) }}">
                                     <span class="fa fa-search"></span>
                                 </a>
                             </td>

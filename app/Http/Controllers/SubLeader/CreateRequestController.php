@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Leader;
+namespace App\Http\Controllers\SubLeader;
 
 use App\Department;
 use App\Http\Controllers\Controller;
@@ -80,7 +80,7 @@ class CreateRequestController extends Controller
             $rel->save();
         }
 
-        return redirect(route('srequest_edit_subleader', ['id' => $req->id]));
+        return redirect(route('srequest_view_subleader', ['id' => $req->id]));
 
     }
 }

@@ -1,4 +1,4 @@
-@extends('admin.homeleader')
+@extends('admin.homemember')
 @section('css')
     <link rel="stylesheet" href="{{ URL::asset('public/theme/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
 @endsection
@@ -34,7 +34,7 @@
                             <td>{{ $data->status_id }}</td>
                             <td class="text-center">
                                 {{-- 1 tap hop cac object voi moi record $data lay id cua cac record --}}
-                                <a href="{{ route('srequest_edit_member', $data->id) }}">
+                                <a href="{{ route('srequest_view_member', $data->id) }}">
                                     <span class="fa fa-search"></span>
                                 </a>
                             </td>

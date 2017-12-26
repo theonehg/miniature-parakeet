@@ -9,6 +9,6 @@ class SubLeaderController extends Controller
 {
     //
     public function index(){
-        return view('homesubleader');
+        return view('admin.homesubleader');
     }
 }

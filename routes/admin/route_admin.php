@@ -111,23 +111,23 @@ Route::group(['middleware'=>'auth'], function(){
         Route::get('relevant/outofdate', 'SubLeader\ShowRelevantRequestController@outofdate')->name('sublead_show_rele_outofdate');
 
         //ASSIGN REQUEST
-        Route::get('assign', 'SubLeader\ShowAssignController@index')->name('sublead_show_assign');
-        Route::get('assign/new', 'SubLeader\ShowAssignController@new')->name('sublead_show_assign_new');
-        Route::get('assign/inprogress', 'SubLeader\ShowAssignController@inprogress')->name('sublead_show_assign_inprogresss');
-        Route::get('assign/feedback', 'SubLeader\ShowAssignController@feedback')->name('sublead_show_assign_feedback');
-        Route::get('assign/outofdate', 'SubLeader\ShowAssignController@outofdate')->name('sublead_show_assign_outofdate');
+        Route::get('assign', 'SubLeader\ShowAssignRequestController@index')->name('sublead_show_assign');
+        Route::get('assign/new', 'SubLeader\ShowAssignRequestController@new')->name('sublead_show_assign_new');
+        Route::get('assign/inprogress', 'SubLeader\ShowAssignRequestController@inprogress')->name('sublead_show_assign_inprogress');
+        Route::get('assign/feedback', 'SubLeader\ShowAssignRequestController@feedback')->name('sublead_show_assign_feedback');
+        Route::get('assign/outofdate', 'SubLeader\ShowAssignRequestController@outofdate')->name('sublead_show_assign_outofdate');
 
         //TEAM REQUEST
-        Route::get('team', 'SubLeader\ShowTeamController@index')->name('sublead_show_team');
-        Route::get('team/new', 'SubLeader\ShowTeamController@new')->name('sublead_show_team_new');
-        Route::get('team/inprogress', 'SubLeader\ShowTeamController@inprogress')->name('sublead_show_team_inprogress');
-        Route::get('team/feedback', 'SubLeader\ShowTeamController@feedback')->name('sublead_show_team_feedback');
-        Route::get('team/outofdate', 'SubLeader\ShowTeamController@outofdate')->name('sublead_show_team_outofdate');
-        Route::get('team/close', 'SubLeader\ShowTeamController@close')->name('sublead_show_team_close');
+        Route::get('team', 'SubLeader\ShowTeamRequestController@index')->name('sublead_show_team');
+        Route::get('team/new', 'SubLeader\ShowTeamRequestController@new')->name('sublead_show_team_new');
+        Route::get('team/inprogress', 'SubLeader\ShowTeamRequestController@inprogress')->name('sublead_show_team_inprogress');
+        Route::get('team/feedback', 'SubLeader\ShowTeamRequestController@feedback')->name('sublead_show_team_feedback');
+        Route::get('team/outofdate', 'SubLeader\ShowTeamRequestController@outofdate')->name('sublead_show_team_outofdate');
+        Route::get('team/close', 'SubLeader\ShowTeamRequestController@close')->name('sublead_show_team_close');
 
         //VIEW REQUEST
-        Route::get('view/{id}', 'SubLeader\EditRequestController@index')->name('srequest_view_subleader');
-        Route::post('view/{id}', 'SubLeader\EditRequestController@edit')->name('srequest_view_subleader');
+        Route::get('view/{id}', 'SubLeader\ShowEditRequestController@index')->name('srequest_view_subleader');
+        Route::post('view/{id}', 'SubLeader\ShowEditRequestController@edit')->name('srequest_view_subleader');
 
     });
 
@@ -149,19 +149,19 @@ Route::group(['middleware'=>'auth'], function(){
         //RELEVANT REQUEST
         Route::get('relevant', 'Member\ShowRelevantRequestController@index')->name('mem_show_rele');
         Route::get('relevant/new', 'Member\ShowRelevantRequestController@new')->name('mem_show_rele_new');
-        Route::get('relevant/improgcess', 'Member\ShowRelevantRequestController@improgcess')->name('mem_show_rele_inprogress');
+        Route::get('relevant/inprogress', 'Member\ShowRelevantRequestController@inprogress')->name('mem_show_rele_inprogress');
         Route::get('relevant/resolved', 'Member\ShowRelevantRequestController@resolved')->name('mem_show_rele_resolved');
         Route::get('relevant/outofdate', 'Member\ShowRelevantRequestController@outofdate')->name('mem_show_rele_outofdate');
         //ASSIGN REQUEST
-        Route::get('assign', 'Member\ShowAssignController@index')->name('mem_show_assign');
-        Route::get('assign/new', 'Member\ShowAssignController@new')->name('mem_show_assign_new');
-        Route::get('assign/inprogress', 'Member\ShowAssignController@inprogress')->name('mem_show_assign_inprogress');
-        Route::get('assign/feedback', 'Member\ShowAssignController@feedback')->name('mem_show_assign_feedback');
-        Route::get('assign/outofdate', 'Member\ShowAssignController@outofdate')->name('mem_show_assign_outofdate');
+        Route::get('assign', 'Member\ShowAssignRequestController@index')->name('mem_show_assign');
+        Route::get('assign/new', 'Member\ShowAssignRequestController@new')->name('mem_show_assign_new');
+        Route::get('assign/inprogress', 'Member\ShowAssignRequestController@inprogress')->name('mem_show_assign_inprogress');
+        Route::get('assign/feedback', 'Member\ShowAssignRequestController@feedback')->name('mem_show_assign_feedback');
+        Route::get('assign/outofdate', 'Member\ShowAssignRequestController@outofdate')->name('mem_show_assign_outofdate');
 
         //VIEW
         Route::get('view/{id}', 'Member\ShowEditRequestController@index')->name('srequest_view_member');
-        Route::post('view/{id}', 'Member\EditRequestController@edit')->name('srequest_view_member');
+        Route::post('view/{id}', 'Member\ShowEditRequestController@edit')->name('srequest_view_member');
 
 
     });
