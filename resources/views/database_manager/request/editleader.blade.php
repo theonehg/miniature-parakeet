@@ -123,15 +123,31 @@
                 </div>
             </div>
         </form>
+
+        @foreach($comments as $comment)
+            <div class="box box-primary">
+                <div class="box-header with-border" data-widget="collapse">
+                    <h3 class="box-title">
+                        @foreach($users as $user)
+                            @if($user->id == $comment->user_id)
+                                {{ $user->fullname }}
+                                @break
+                            @endif
+                        @endforeach
+                    </h3>
+                    <div class="box-tools pull-right">
+                        <small><i class="fa fa-clock-o"></i> {{ $comment->created_at }}</small>
+                        <button type="button" class="btn btn-box-tool"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    {!! $comment->content !!}
+                </div>
+            </div>
+        @endforeach
     </section>
 
 
-    <div class="row">
-        <div id="result-comment" class="form-group">
-            <p>show comment owr dday bi vo phong chinh lai neu co the nhe</p><!--comment ajax result sau khi bình luận xong cái này sẽ suất hiện 1 list danh giống như ở trên kèm theo cái bình luận vừa submit. theo ajax để tránh bị trùng nên tôi đã hide phần trên-->
-        </div>
-    </div>
-    <br>
     <form action="" method="post" enctype="multipart/form-data">
         {{csrf_field()}}
         <div class="form-group">
@@ -147,14 +163,12 @@
             <br>
             {{--<!--phần này sẽ chạy trpng jquery ở duwosi-->--}}
             {{--<div id="showtextarea">--}}
-                {{--<!--textarea-->--}}
+            {{--<!--textarea-->--}}
             {{--</div>--}}
         </div>
         <textarea class="form-control" placeholer="Comment"></textarea>
         <button id="comment" class="btn btn-primary" type="submit" style="display: none">Gửi Bình Luận</button>
-
-
-    {{-- trang xu ly edit gom cac form khac nhau de sua  --}}
+    </form>
 @endsection
 @section('js')
     <script src="{{ URL::asset('public/theme/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>

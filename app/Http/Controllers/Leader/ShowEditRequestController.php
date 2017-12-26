@@ -32,7 +32,6 @@ class ShowEditRequestController extends Controller
         $users = User::select('id', 'fullname')->get();
         $relaters = Relater::select('user_id')->where('request_id', '=', $request_id)->get();
         $comments = Comment::where('request_id', '=', $request_id)->get();
-        $types = Type::get();
 
         return view('database_manager.request.editleader')->with([
             'request' => $request,
@@ -41,8 +40,7 @@ class ShowEditRequestController extends Controller
             'users' => $users,
             'relaters' => $relaters,
             'statuses' => $statuses,
-            'comments' => $comments,
-            'types' => $types
+            'comments' => $comments
         ]);
     }
 
