@@ -81,6 +81,5 @@ class CreateRequestController extends Controller
         }
 
         return redirect(route('srequest_edit_leader', ['id' => $req->id]));
-
     }
 }

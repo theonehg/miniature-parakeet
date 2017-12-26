@@ -5,57 +5,98 @@ namespace App\Http\Controllers\Leader;
 use App\Department;
 use App\Http\Controllers\Controller;
 use App\Priority;
+use App\Relater;
 use App\Request;
 use App\Status;
 use App\User;
+use Carbon\Carbon;
+use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class ShowEditRequestController extends Controller
 {
-    public function index($id)
+    public function index($request_id)
     {
-        $id = Auth::id();
-        //lấy dữ liệu của trường tìm kiếm đầu tiên trên bảng User lấy
-        $data = Request::join('priorities', 'requests.priority_id', '=', 'priorities.id')->join('departments', 'requests.department_id', '=', 'departments.id')->join('users as a', 'requests.assigned_to', '=', 'a.id')->join('users as b', 'requests.created_by', '=', 'b.id')->join('statuses', 'requests.status_id', '=', 'statuses.id')->select('requests.id as id', 'subject', 'statuses.name as status', 'priorities.name as priority', 'a.fullname as assigned_to', 'b.fullname as created_by', 'deadline_at', 'created_at', 'departments.name as department', 'content', 'statuses.id as status_id')->where('requests.id', '=', $id)->first();
-        //Đoạn này : ban đầu em dùng get() thì nó có thể là 1 mảng các data mà em chỉ cần 1 data thôi.nên em cần hạn chế số lượng lấy ra
-        //Bằng cách:
-        /// first() :: lấy phần tử đầu tiên
-        //take(1)->get() : lấy 1 phần tử (nhưng mà nó trả về colection .nên ['edit_data' => $data cần sửa.sửa thế nào em tự tìm hiểu :))
-        // dùng limit(1) để lấy 1 phần tử.chắc cũng ok :)) a chưa thử.em có thể thử :v
+        $request = Request::find($request_id);
+        if ($request == null) {
+            return Redirect::back();
+        }
 
-        $pr = Priority::get();
-        $dep = Department::get();
-        $stu = Status::get();
-        $rel = User::get(); // TODO: select nguoi lien quan nhuwng chua duoc
-//    dd($data);
-        return view('database_manager.request.editleader')->with(['edit_data' => $data, 'pr' => $pr, 'dep' => $dep, 'rel' => $rel, 'stu' => $stu]);
+        $priorities = Priority::get();
+        $departments = Department::get();
+        $statuses = Status::get();
+        $users = User::select('id', 'fullname')->get();
+        $relaters = Relater::select('user_id')->where('request_id', '=', $request_id)->get();
 
+        return view('database_manager.request.editleader')->with([
+            'request' => $request,
+            'priorities' => $priorities,
+            'departments' => $departments,
+            'users' => $users,
+            'relaters' => $relaters,
+            'statuses' => $statuses
+        ]);
     }
 
-    public function edit(Request $request, $id)
+    public function edit(HttpRequest $request, $req_id)
     {
-        //sua du lieu
-        $edit = Request::find($id);
-//     dd ($id);
-        $edit->subject = $request->subject;
-        $edit->priority_id = $request->priority;
-        $edit->deadline_at = $request->deadline;
-        $edit->department_id = $request->department;
-        $edit->assigned_to = $request->assigned_to;
-        $edit->status_id = $request->status;
-        //$edit->content = $request->content;
-        //dd($edit);
-        $edit->save();
+        /**
+         * Validate input
+         */
+        $validator = Validator::make($request->all(), [
+            'subject' => 'required|max:255',
+            'content' => 'required',
+            'status_id' => 'required|integer|min:0',
+            'priority_id' => 'required|integer|min:0',
+            'department_id' => 'required|integer|min:0',
+            'deadline_at' => 'required|date_format:Y-m-d H:i:s|after:now',
+            'relaters.*' => 'required|integer|min:0',
+        ]);
 
-        $data = Request::join('priorities', 'requests.priority_id', '=', 'priorities.id')->join('departments', 'requests.department_id', '=', 'departments.id')->join('users as a', 'requests.assigned_to', '=', 'a.id')->join('users as b', 'requests.created_by', '=', 'b.id')->join('statuses', 'requests.status_id', '=', 'statuses.id')->select('requests.id as id', 'subject', 'statuses.name as status', 'priorities.name as priority', 'a.fullname as assigned_to', 'b.fullname as created_by', 'deadline_at', 'created_at', 'departments.name as department', 'content', 'statuses.id as status_id')->where('requests.id', '=', $id)->first();
-        $pr = Priority::get();
-        $dep = Department::get();
-        $stu = Status::get();
-        $rel = User::get();
+        if ($validator->fails()
+            || Status::find($request->input('status_id')) == null
+            || Priority::find($request->input('priority_id')) == null
+            || Department::find($request->input('department_id')) == null) {
 
-        //dd($data);
+            return Redirect::back();
+        }
 
-        return view('database_manager.request.editleader')->with(['edit_data' => $data, 'pr' => $pr, 'dep' => $dep, 'rel' => $rel, 'stu' => $stu]);
+        foreach ($request->input('relaters') as $relater) {
+            if (User::find($relater) == null) {
+                return Redirect::back();
+            }
+        }
 
+        $req = Request::find($req_id);
+        if ($req == null) {
+            return Redirect::back();
+        }
+
+        /**
+         * Update Request
+         */
+        $req->subject = $request->input('subject');
+        $req->content = $request->input('content');
+        $req->status_id = $request->input('status_id');
+        $req->priority_id = $request->input('priority_id');
+        $req->department_id = $request->input('department_id');
+        $req->updated_at = Carbon::now();
+        $req->deadline_at = $request->input('deadline_at');
+        $req->save();
+
+        /**
+         * Update Relaters
+         */
+        Relater::where('request_id', '=', $req_id)->delete();
+        foreach ($request->input('relaters') as $relater) {
+            $rel = new Relater();
+            $rel->request_id = $req->id;
+            $rel->user_id = $relater;
+            $rel->save();
+        }
+
+        return redirect(route('srequest_edit_leader', ['id' => $req->id]));
     }
 }
