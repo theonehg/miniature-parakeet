@@ -38,7 +38,7 @@
                 <ul class="treeview-menu">
                     <li><a href="{{route('mem_show_indi')}}"><i class="fa fa-circle-o"></i> All</a></li>
                     <li><a href="{{route('mem_show_indi_new')}}"><i class="fa fa-circle-o"></i> New</a></li>
-                    <li><a href="{{route('mem_show_indi_improgcess')}}"><i class="fa fa-circle-o"></i> Improgress</a></li>
+                    <li><a href="{{route('mem_show_indi_inprogress')}}"><i class="fa fa-circle-o"></i> Inprogress</a></li>
                     <li><a href="{{route('mem_show_indi_resolved')}}"><i class="fa fa-circle-o"></i> Resolved</a></li>
                     <li><a href="{{route('mem_show_indi_outofdate')}}"><i class="fa fa-circle-o"></i> Out of Date</a></li>
                 </ul>
@@ -54,7 +54,7 @@
                 <ul class="treeview-menu">
                     <li><a href="{{route('mem_show_rele')}}"><i class="fa fa-circle-o"></i> All</a></li>
                     <li><a href="{{route('mem_show_rele_new')}}"><i class="fa fa-circle-o"></i> New</a></li>
-                    <li><a href="{{route('mem_show_rele_improcess')}}"><i class="fa fa-circle-o"></i> Improgress</a></li>
+                    <li><a href="{{route('mem_show_rele_inprogress')}}"><i class="fa fa-circle-o"></i> Inprogress</a></li>
                     <li><a href="{{route('mem_show_rele_resolved')}}"><i class="fa fa-circle-o"></i> Resolved</a></li>
                     <li><a href="{{route('mem_show_rele_outofdate')}}"><i class="fa fa-circle-o"></i> Out of Date</a></li>
                 </ul>
@@ -70,7 +70,7 @@
                 <ul class="treeview-menu">
                     <li><a href="{{route('mem_show_assign')}}"><i class="fa fa-circle-o"></i> All</a></li>
                     <li><a href="{{route('mem_show_assign_new')}}"><i class="fa fa-circle-o"></i> New</a></li>
-                    <li><a href="{{route('mem_show_assign_improgcess')}}"><i class="fa fa-circle-o"></i> Improgress</a></li>
+                    <li><a href="{{route('mem_show_assign_inprogress')}}"><i class="fa fa-circle-o"></i> Inprogress</a></li>
                     <li><a href="{{route('mem_show_assign_feedback')}}"><i class="fa fa-circle-o"></i> Resolved</a></li>
                     <li><a href="{{route('mem_show_assign_outofdate')}}"><i class="fa fa-circle-o"></i> Out of Date</a></li>
                 </ul>

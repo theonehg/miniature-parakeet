@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
                 'fullname' => 'Tân Văn Luyện',
                 'email' => 'luyentv@gmail.com',
                 'avatar' => '',
-                'password' => bcrypt('luyentv1234'),],
+                'password' => bcrypt('luyentv1234'),]
         ]);
     }
 
