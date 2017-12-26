@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Leader;
 
+use App\Comment;
 use App\Department;
 use App\Http\Controllers\Controller;
 use App\Priority;
 use App\Relater;
 use App\Request;
 use App\Status;
+use App\Type;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request as HttpRequest;
@@ -29,6 +31,8 @@ class ShowEditRequestController extends Controller
         $statuses = Status::get();
         $users = User::select('id', 'fullname')->get();
         $relaters = Relater::select('user_id')->where('request_id', '=', $request_id)->get();
+        $comments = Comment::where('request_id', '=', $request_id)->get();
+        $types = Type::get();
 
         return view('database_manager.request.editleader')->with([
             'request' => $request,
@@ -36,7 +40,9 @@ class ShowEditRequestController extends Controller
             'departments' => $departments,
             'users' => $users,
             'relaters' => $relaters,
-            'statuses' => $statuses
+            'statuses' => $statuses,
+            'comments' => $comments,
+            'types' => $types
         ]);
     }
 
@@ -53,6 +59,7 @@ class ShowEditRequestController extends Controller
             'department_id' => 'required|integer|min:0',
             'deadline_at' => 'required|date_format:Y-m-d H:i:s|after:now',
             'relaters.*' => 'required|integer|min:0',
+            'comment_content' => 'required'
         ]);
 
         if ($validator->fails()
@@ -96,6 +103,47 @@ class ShowEditRequestController extends Controller
             $rel->user_id = $relater;
             $rel->save();
         }
+
+        /**
+         * Create Comment
+         */
+        $cmt = new Comment();
+        $cmt->request_id = $req_id;
+        $cmt->user_id = Auth::id();
+        $cmt->content = $request->input('comment_content');
+        $cmt->created_at = Carbon::now();
+        $cmt->save();
+
+        return redirect(route('srequest_edit_leader', ['id' => $req->id]));
+    }
+
+    public function comment(HttpRequest $request, $req_id)
+    {
+        /**
+         * Validate input
+         */
+        $validator = Validator::make($request->all(), [
+            'comment_content' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return Redirect::back();
+        }
+
+        $req = Request::find($req_id);
+        if ($req == null) {
+            return Redirect::back();
+        }
+
+        /**
+         * Create Comment
+         */
+        $cmt = new Comment();
+        $cmt->request_id = $req_id;
+        $cmt->user_id = Auth::id();
+        $cmt->content = $request->input('comment_content');
+        $cmt->created_at = Carbon::now();
+        $cmt->save();
 
         return redirect(route('srequest_edit_leader', ['id' => $req->id]));
     }
