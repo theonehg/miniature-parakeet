@@ -12,7 +12,7 @@
 @endsection
 @section('main')
     <section class="content">
-        <form method="post" action="{{route('crequest_leader')}}">
+        <form method="post" action="{{route('crequest_member')}}">
             {{ csrf_field() }}
             <div class="box box-primary box-solid">
                 <div class="box-header with-border">

@@ -9,7 +9,6 @@ use App\Priority;
 use App\Relater;
 use App\Request;
 use App\Status;
-use App\Type;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request as HttpRequest;
@@ -56,7 +55,7 @@ class ShowEditRequestController extends Controller
             'priority_id' => 'required|integer|min:0',
             'department_id' => 'required|integer|min:0',
             'deadline_at' => 'required|date_format:Y-m-d H:i:s|after:now',
-            'relaters.*' => 'required|integer|min:0',
+            'relaters.*' => 'integer|min:0',
             'comment_content' => 'required'
         ]);
 
@@ -65,6 +64,7 @@ class ShowEditRequestController extends Controller
             || Priority::find($request->input('priority_id')) == null
             || Department::find($request->input('department_id')) == null) {
 
+            dd($validator);
             return Redirect::back();
         }
 
@@ -110,6 +110,7 @@ class ShowEditRequestController extends Controller
         $cmt->user_id = Auth::id();
         $cmt->content = $request->input('comment_content');
         $cmt->created_at = Carbon::now();
+        $cmt->updated_at = Carbon::now();
         $cmt->save();
 
         return redirect(route('srequest_edit_leader', ['id' => $req->id]));
@@ -121,7 +122,7 @@ class ShowEditRequestController extends Controller
          * Validate input
          */
         $validator = Validator::make($request->all(), [
-            'comment_content' => 'required'
+            'content' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -139,8 +140,9 @@ class ShowEditRequestController extends Controller
         $cmt = new Comment();
         $cmt->request_id = $req_id;
         $cmt->user_id = Auth::id();
-        $cmt->content = $request->input('comment_content');
+        $cmt->content = $request->input('content');
         $cmt->created_at = Carbon::now();
+        $cmt->updated_at = Carbon::now();
         $cmt->save();
 
         return redirect(route('srequest_edit_leader', ['id' => $req->id]));

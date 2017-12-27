@@ -40,7 +40,7 @@ class CreateRequestController extends Controller
             'priority_id' => 'required|integer|min:0',
             'department_id' => 'required|integer|min:0',
             'deadline_at' => 'required|date_format:Y-m-d H:i:s|after:now',
-            'relaters.*' => 'required|integer|min:0',
+            'relaters.*' => 'integer|min:0',
         ]);
 
         if ($validator->fails()

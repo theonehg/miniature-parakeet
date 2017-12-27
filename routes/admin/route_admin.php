@@ -84,6 +84,7 @@ Route::group(['middleware'=>'auth'], function(){
         //EDIT
         Route::get('edit/{id}', 'Leader\ShowEditRequestController@index')->name('srequest_edit_leader');
         Route::post('edit/{id}', 'Leader\ShowEditRequestController@edit')->name('srequest_edit_leader');
+        Route::post('comment/{id}', 'Leader\ShowEditRequestController@comment')->name('srequest_comment_leader');
 
 
 
@@ -128,6 +129,7 @@ Route::group(['middleware'=>'auth'], function(){
         //VIEW REQUEST
         Route::get('view/{id}', 'SubLeader\ShowEditRequestController@index')->name('srequest_view_subleader');
         Route::post('view/{id}', 'SubLeader\ShowEditRequestController@edit')->name('srequest_view_subleader');
+        Route::post('comment/{id}', 'SubLeader\ShowEditRequestController@comment')->name('srequest_comment_subleader');
 
     });
 
@@ -162,8 +164,7 @@ Route::group(['middleware'=>'auth'], function(){
         //VIEW
         Route::get('view/{id}', 'Member\ShowEditRequestController@index')->name('srequest_view_member');
         Route::post('view/{id}', 'Member\ShowEditRequestController@edit')->name('srequest_view_member');
-
-
+        Route::post('comment/{id}', 'Member\ShowEditRequestController@comment')->name('srequest_comment_member');
     });
 
 

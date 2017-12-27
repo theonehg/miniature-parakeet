@@ -44,7 +44,7 @@
                                 <label class="required" for="request_deadline">Deadline</label>
                                 <div class="input-group date">
                                     <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                    <input type="text" class="form-control" id="request_deadline" name="deadline" data-date-format="yyyy-mm-dd hh:ii:ss" value="{{ $request->deadline_at }}" required>
+                                    <input type="text" class="form-control" id="request_deadline" name="deadline_at" data-date-format="yyyy-mm-dd hh:ii:ss" value="{{ $request->deadline_at }}" required>
                                 </div>
                             </div>
                         </div>
@@ -89,7 +89,7 @@
                         <div class="col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label class="required" for="request_priority">Status</label>
-                                <select class="form-control" id="status" name="status">
+                                <select class="form-control" id="status" name="status_id">
                                     @foreach($statuses as $status)
                                         @if($request->status_id == $status->id)
                                             <option value="{{ $status->id }}" selected>{{ $status->name }}</option>
@@ -112,13 +112,17 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="request_content">Content</label>
+                        <label class="required" for="request_content">Content</label>
                         <textarea id="request_content" name="content" class="form-control" style="height:250px">{!! $request->content !!}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="required" for="comment_content">Edit comment</label>
+                        <textarea id="comment_content" name="comment_content" class="form-control" style="height:150px"></textarea>
                     </div>
                 </div>
                 <div class="box-footer">
                     <div class="pull-right">
-                        <button type="submit" class="btn btn-primary">Edit</button>
+                        <button type="submit" class="btn btn-primary">Edit and Comment</button>
                     </div>
                 </div>
             </div>
@@ -145,30 +149,27 @@
                 </div>
             </div>
         @endforeach
+
+        <form action="{{ route('srequest_comment_leader', ['id' => $request->id]) }}" method="post" enctype="multipart/form-data">
+            {{csrf_field()}}
+            <div class="box box-primary box-solid">
+                <div class="box-header with-border" data-widget="collapse">
+                    <h3 class="box-title">Write comment:</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <textarea id="comment_content" name="content" class="form-control" style="height:150px" required></textarea>
+                </div>
+                <div class="box-footer">
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-primary">Comment</button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </section>
-
-
-    <form action="" method="post" enctype="multipart/form-data">
-        {{csrf_field()}}
-        <div class="form-group">
-            <label for="binhluan">Bình luận</label>
-            <br/>
-            <select id="comment_value" class="form-control">
-                <option value="" selected disabled>Chọn loại comment</option>
-                <option value="0">Comment Bình thường</option>
-                <option value="1">Comment Đánh giá</option>
-                <option value="2">Comment thay đổi mức độ ưu tiên</option>
-                <option value="3">Comment thay đổi deadline</option>
-            </select>
-            <br>
-            {{--<!--phần này sẽ chạy trpng jquery ở duwosi-->--}}
-            {{--<div id="showtextarea">--}}
-            {{--<!--textarea-->--}}
-            {{--</div>--}}
-        </div>
-        <textarea class="form-control" placeholer="Comment"></textarea>
-        <button id="comment" class="btn btn-primary" type="submit" style="display: none">Gửi Bình Luận</button>
-    </form>
 @endsection
 @section('js')
     <script src="{{ URL::asset('public/theme/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
@@ -178,6 +179,8 @@
             $('#request_deadline').datetimepicker({autoclose: true});
             $('#request_relaters').select2();
             $('#request_content').wysihtml5();
+            $('#request_comment').wysihtml5();
+            $('#comment_content').wysihtml5();
         });
     </script>
 @endsection

@@ -22,7 +22,6 @@ class ShowIndividualRequestController extends Controller
                 'created_by.fullname as created_by', 'assigned_to.fullname as assigned_to', 'deadline_at', 'statuses.name as status')
             ->where('created_by.id', '=', $id)
             ->get();
-
         return view('database_manager.show_list_congviecyeucau.show_leader')->with(['indi_data' => $data]);
     }
 
